@@ -7,6 +7,7 @@ param(
     [string]$ChangeNotesFile,
     [switch]$SkipVerify,
     [string]$UploaderPath,
+    [ValidateRange(30, 300)][int]$UploadTimeoutSeconds,
     [Parameter(DontShow = $true)][string]$RemoteProviderPath,
     [Parameter(DontShow = $true)][string]$AdapterPath
 )
@@ -20,4 +21,3 @@ if ($PSVersionTable.PSVersion.Major -lt 7) {
 $modulePath = Join-Path $PSScriptRoot 'src\WorkshopRelease.psm1'
 Import-Module $modulePath -Force
 Invoke-GMTWorkshopRelease @PSBoundParameters
-

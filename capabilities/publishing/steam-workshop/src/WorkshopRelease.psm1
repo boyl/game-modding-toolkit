@@ -102,7 +102,8 @@ function Invoke-GMTWorkshopRelease {
     param(
         [Parameter(Mandatory)][string]$ProjectProfile, [string[]]$Variant, [uri]$Proxy,
         [switch]$Publish, [string]$ChangeNotesFile, [switch]$SkipVerify,
-        [string]$UploaderPath, [string]$RemoteProviderPath, [string]$AdapterPath
+        [string]$UploaderPath, [int]$UploadTimeoutSeconds,
+        [string]$RemoteProviderPath, [string]$AdapterPath
     )
     $profileInfo = Read-GMTProfile $ProjectProfile
     $profile = $profileInfo.Value
@@ -162,6 +163,7 @@ function Invoke-GMTWorkshopRelease {
     Import-Module $adapterModule -Force
     $configuration = if ($profile.adapter.PSObject.Properties['configuration']) { $profile.adapter.configuration } else { [pscustomobject]@{} }
     if ($UploaderPath) { $configuration | Add-Member -NotePropertyName uploaderPath -NotePropertyValue $UploaderPath -Force }
+    if ($UploadTimeoutSeconds) { $configuration | Add-Member -NotePropertyName uploadTimeoutSeconds -NotePropertyValue $UploadTimeoutSeconds -Force }
     $session=Open-GMTWorkshopUploader -Configuration $configuration -EvidenceRoot $evidenceRoot
     try {
         foreach ($entry in $items.GetEnumerator()) {
