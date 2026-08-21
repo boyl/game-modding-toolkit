@@ -2,6 +2,8 @@
 
 A distributable toolkit for game mod development, validation, installation, diagnostics, and publishing. The tools run independently in PowerShell 7 and do not require Codex or Skills.
 
+Coding agents can start with the [AI integration guide](docs/ai-integration.md). Instructions are layered by repository, capability, and game and do not require a specific AI product.
+
 ## Capabilities
 
 - [Steam Workshop publishing](capabilities/publishing/steam-workshop/README.md): read-only preflight, remote identity checks, preview protection, one-shot upload state machine, and evidence capture.
@@ -22,9 +24,10 @@ pwsh ./capabilities/publishing/steam-workshop/Invoke-WorkshopRelease.ps1 `
 
 The command is read-only by default. It changes a Workshop item only when `-Publish` and change notes are supplied explicitly.
 
+See the [documentation index](docs/README.md) and [Workshop adapter contract](docs/adapter-contract.md) for additional entry points.
+
 ## Contributing and license
 
 Put reusable capabilities under `capabilities/<capability>/` and game-specific code under `games/<game>/`. Public examples must not contain personal paths, credentials, or real Workshop IDs.
 
 Licensed under the [MIT License](LICENSE).
-

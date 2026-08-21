@@ -1,0 +1,10 @@
+Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
+
+function Test-GMTWorkshopAdapterEnvironment { param($Configuration); throw '请实现只读环境发现。' }
+function Open-GMTWorkshopUploader { param($Configuration,[string]$EvidenceRoot); throw '请实现上传器会话。' }
+function Open-GMTWorkshopProject { param($Session,$Item,[string]$EvidenceRoot); throw '请实现项目加载。' }
+function Invoke-GMTWorkshopUploadOnce { param($Session,$Item,[string]$EvidenceRoot); throw '请实现单次上传并拒绝重复调用。' }
+function Close-GMTWorkshopUploader { param($Session) }
+
+Export-ModuleMember -Function Test-GMTWorkshopAdapterEnvironment,Open-GMTWorkshopUploader,Open-GMTWorkshopProject,Invoke-GMTWorkshopUploadOnce,Close-GMTWorkshopUploader

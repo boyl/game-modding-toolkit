@@ -1,7 +1,7 @@
 $ErrorActionPreference='Stop'; Set-StrictMode -Version Latest
 $module=Join-Path (Split-Path $PSScriptRoot -Parent) 'adapters\mod-uploader\IsaacModUploaderAdapter.psm1'
 $content=Get-Content -Raw -LiteralPath $module
-foreach($name in 'Open-GMTWorkshopUploader','Open-GMTWorkshopProject','Invoke-GMTWorkshopUploadOnce','Close-GMTWorkshopUploader'){
+foreach($name in 'Test-GMTWorkshopAdapterEnvironment','Open-GMTWorkshopUploader','Open-GMTWorkshopProject','Invoke-GMTWorkshopUploadOnce','Close-GMTWorkshopUploader'){
   if($content -notmatch [regex]::Escape($name)){throw "适配器缺少契约函数：$name"}
 }
 if(([regex]::Matches($content,'Click-GMTIsaacRelative \$main 0\.26 0\.16')).Count -ne 1){throw '上传按钮坐标必须只有一个调用点。'}

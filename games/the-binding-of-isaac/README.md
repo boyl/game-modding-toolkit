@@ -81,6 +81,24 @@ pwsh ./capabilities/publishing/steam-workshop/Invoke-WorkshopRelease.ps1 `
 4. 先运行只读预检并检查清单、版本、远端更新时间和预览图哈希。
 5. 只有预检完全符合预期后才添加 `-Publish`。
 
+也可以让配置生成器创建安全默认值：
+
+```powershell
+$variants = @(
+  @{ name='zh'; publishedFileId='0000000000'; expectedTitle='示例标题'; descriptionMarker='稳定描述标记'; candidateDirectory='dist/workshop-candidates/zh' }
+)
+pwsh ./New-ModProjectProfile.ps1 -Game the-binding-of-isaac -ProjectRoot C:/path/to/mod -OutputPath C:/path/to/mod/tools/workshop-release-profile.json -Variant $variants
+pwsh ./Test-ModdingToolkitEnvironment.ps1 -ProjectProfile C:/path/to/mod/tools/workshop-release-profile.json
+```
+
+## 交给 AI 操作
+
+将下面内容发送给能够读取仓库并运行 PowerShell 7 的编码代理：
+
+> 读取 game-modding-toolkit 根目录、Steam Workshop 能力目录和 The Binding of Isaac 目录中的 AGENTS.md 与 README。先运行环境诊断；缺少配置时使用配置生成器。随后只运行只读预检并汇报 Git SHA、Workshop 身份、候选版本、预览图哈希和证据目录。除非我明确说“发布”，不要传递 -Publish。
+
+完整通用流程及发布提示词见 [`../../docs/ai-integration.md`](../../docs/ai-integration.md)。
+
 ## 常见故障
 
 - **找不到上传器**：确认 Steam 库可读取，或使用 `-UploaderPath`。

@@ -1,5 +1,7 @@
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+$profileModule = Join-Path $PSScriptRoot '..\..\..\..\shared\powershell\ProjectProfile.psm1'
+Import-Module $profileModule -Force
 
 function Write-GMTCheckpoint {
     param([string]$Name, [string]$Detail = '')
@@ -15,22 +17,7 @@ function Resolve-GMTPath {
 
 function Read-GMTProfile {
     param([string]$ProfilePath)
-    $resolved = (Resolve-Path -LiteralPath $ProfilePath -ErrorAction Stop).Path
-    $profile = Get-Content -Raw -LiteralPath $resolved | ConvertFrom-Json -Depth 32
-    if ($profile.schemaVersion -ne 1) { throw "不支持的项目配置版本：$($profile.schemaVersion)" }
-    foreach ($required in 'projectName','projectRoot','adapter','variants') {
-        if ($null -eq $profile.$required) { throw "项目配置缺少字段：$required" }
-    }
-    if (-not $profile.adapter.id -or $profile.variants.Count -lt 1) { throw '项目配置缺少适配器或变体。' }
-    $names = @{}
-    foreach ($item in $profile.variants) {
-        foreach ($required in 'name','publishedFileId','expectedTitle','descriptionMarker','candidateDirectory') {
-            if ([string]::IsNullOrWhiteSpace([string]$item.$required)) { throw "变体缺少字段 $required。" }
-        }
-        if ($names.ContainsKey($item.name)) { throw "变体名称重复：$($item.name)" }
-        $names[$item.name] = $true
-    }
-    return [ordered]@{ Path=$resolved; Directory=Split-Path $resolved -Parent; Value=$profile }
+    return Read-GMTValidatedProjectProfile -Path $ProfilePath
 }
 
 function Invoke-GMTGit {

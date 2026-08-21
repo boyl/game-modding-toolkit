@@ -57,6 +57,13 @@ function Resolve-GMTIsaacUploaderPath {
     throw '找不到 ModUploader.exe，请通过 -UploaderPath 指定。'
 }
 
+function Test-GMTWorkshopAdapterEnvironment {
+    param($Configuration)
+    $explicitPath=if($Configuration.PSObject.Properties['uploaderPath']){[string]$Configuration.uploaderPath}else{''}
+    $path=Resolve-GMTIsaacUploaderPath $explicitPath
+    return [ordered]@{ Adapter='isaac-mod-uploader'; UploaderPath=$path; ProcessRunning=(@(Get-Process ModUploader -ErrorAction SilentlyContinue).Count -gt 0) }
+}
+
 function Find-GMTIsaacWindow {
     param([int]$ProcessId,[string]$ExactTitle)
     $script:FoundWindow=[IntPtr]::Zero
@@ -183,4 +190,4 @@ function Close-GMTWorkshopUploader {
     if ($Session -and $Session.Process -and -not $Session.Process.HasExited) { $Session.Process.CloseMainWindow() | Out-Null }
 }
 
-Export-ModuleMember -Function Open-GMTWorkshopUploader,Open-GMTWorkshopProject,Invoke-GMTWorkshopUploadOnce,Close-GMTWorkshopUploader
+Export-ModuleMember -Function Test-GMTWorkshopAdapterEnvironment,Open-GMTWorkshopUploader,Open-GMTWorkshopProject,Invoke-GMTWorkshopUploadOnce,Close-GMTWorkshopUploader
