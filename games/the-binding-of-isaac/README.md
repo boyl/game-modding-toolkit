@@ -33,7 +33,7 @@ pwsh ./capabilities/publishing/steam-workshop/Invoke-WorkshopRelease.ps1 `
 - `adapter.configuration.uploadTimeoutSeconds`：上传后只读轮询的最长秒数。
 - `policies.requireCleanPushedHead`：是否要求干净且已推送的 Git HEAD。
 - `policies.preserveRemotePreview`：是否要求候选预览图与远端完全一致。
-- `hooks`：固定的 `executable` 与 `arguments` 数组，不接受拼接的任意 shell 字符串。`verify` 可由 `-SkipVerify` 跳过，`build` 始终运行。
+- `hooks`：固定的 `executable` 与 `arguments` 数组，不接受拼接的任意 shell 字符串。默认运行 `verify`；使用 `-SkipVerify` 时跳过验证并改为运行 `build`，用于保留项目原有的快速候选构建流程。
 - `variants`：语言或发行变体。每项包含名称、Workshop ID、预期标题、描述标记和候选目录。
 
 ## 发布一个或多个语言版本
@@ -89,4 +89,3 @@ pwsh ./capabilities/publishing/steam-workshop/Invoke-WorkshopRelease.ps1 `
 - **Steam API 超时**：检查代理或网络；上传后超时不会触发第二次上传。
 - **候选被上传器改写**：发布结束后重新运行项目构建器；项目工作树若变化，流程会失败并留下证据。
 - **残留表单**：关闭旧上传器进程后重新预检；真实发布前应从干净表单开始。
-

@@ -129,7 +129,7 @@ function Invoke-GMTWorkshopRelease {
             Push-Location $projectRoot; try { Invoke-GMTHook $hook $projectRoot } finally { Pop-Location }
         }
     }
-    if ($hasHooks) {
+    if ($SkipVerify -and $hasHooks) {
         foreach ($hook in @($profile.hooks | Where-Object { $_.phase -eq 'build' -and (-not $_.PSObject.Properties['variant'] -or $selected.name -contains $_.variant) })) {
             Push-Location $projectRoot; try { Invoke-GMTHook $hook $projectRoot } finally { Pop-Location }
         }
