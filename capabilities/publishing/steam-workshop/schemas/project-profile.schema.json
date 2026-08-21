@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/boyl/game-modding-toolkit/schemas/steam-workshop-project-profile-v1.json",
+  "title": "Steam Workshop project profile",
+  "type": "object",
+  "required": ["schemaVersion", "projectName", "projectRoot", "adapter", "variants"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "projectName": { "type": "string", "minLength": 1 },
+    "projectRoot": { "type": "string", "minLength": 1 },
+    "evidenceDirectory": { "type": "string", "default": "artifacts/workshop-release" },
+    "adapter": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "configuration": { "type": "object" }
+      }
+    },
+    "policies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "requireCleanPushedHead": { "type": "boolean", "default": true },
+        "preserveRemotePreview": { "type": "boolean", "default": true }
+      }
+    },
+    "hooks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/hook" }
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/variant" }
+    }
+  },
+  "$defs": {
+    "hook": {
+      "type": "object",
+      "required": ["phase", "executable", "arguments"],
+      "additionalProperties": false,
+      "properties": {
+        "phase": { "enum": ["verify", "build"] },
+        "variant": { "type": "string" },
+        "executable": { "type": "string", "minLength": 1 },
+        "arguments": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "variant": {
+      "type": "object",
+      "required": ["name", "publishedFileId", "expectedTitle", "descriptionMarker", "candidateDirectory"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" },
+        "publishedFileId": { "type": "string", "pattern": "^[0-9]+$" },
+        "expectedTitle": { "type": "string", "minLength": 1 },
+        "descriptionMarker": { "type": "string", "minLength": 1 },
+        "candidateDirectory": { "type": "string", "minLength": 1 },
+        "metadataFile": { "type": "string", "default": "metadata.xml" },
+        "previewFile": { "type": "string", "default": "preview.png" }
+      }
+    }
+  }
+}
+

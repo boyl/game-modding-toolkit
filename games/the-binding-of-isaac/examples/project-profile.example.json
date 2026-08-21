@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "projectName": "example-isaac-mod",
+  "projectRoot": "../../../../my-isaac-mod",
+  "evidenceDirectory": "artifacts/workshop-release",
+  "adapter": {
+    "id": "isaac-mod-uploader",
+    "configuration": {
+      "mainWindowTitle": "The Binding of Isaac: Afterbirth+ Mod Uploader",
+      "uploadTimeoutSeconds": 150
+    }
+  },
+  "policies": {
+    "requireCleanPushedHead": true,
+    "preserveRemotePreview": true
+  },
+  "hooks": [
+    {
+      "phase": "verify",
+      "executable": "pwsh",
+      "arguments": ["./tools/verify-workshop-candidates.ps1"]
+    }
+  ],
+  "variants": [
+    {
+      "name": "zh",
+      "publishedFileId": "0000000000",
+      "expectedTitle": "示例 Mod 标题",
+      "descriptionMarker": "示例描述标记",
+      "candidateDirectory": "dist/workshop-candidates/example_zh"
+    }
+  ]
+}
+

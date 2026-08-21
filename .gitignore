@@ -1,0 +1,4 @@
+artifacts/
+*.user.json
+.pwsh-modules/
+
