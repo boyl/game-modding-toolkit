@@ -7,11 +7,13 @@ Coding agents can start with the [AI integration guide](docs/ai-integration.md).
 ## Capabilities
 
 - [Steam Workshop publishing](capabilities/publishing/steam-workshop/README.md): read-only preflight, remote identity checks, preview protection, one-shot upload state machine, and evidence capture.
+- [Monster Hunter Rise weapon VFX](games/monster-hunter-rise/capabilities/weapon-vfx/README.md): data-driven action recipes, whiff/hit dispatch, persistent-instance lifecycle, and project scaffolding. The detailed guide is maintained in Chinese.
 - Reserved categories: `packaging`, `installing`, `validation`, and `diagnostics`.
 
 ## Supported games
 
 - [The Binding of Isaac: Rebirth](games/the-binding-of-isaac/README.md): Windows GUI adapter for the bundled `ModUploader.exe`. The Chinese guide is the canonical detailed documentation.
+- [Monster Hunter Rise: Sunbreak](games/monster-hunter-rise/README.md): Steam 16.0.2.0 reference runtime and weapon VFX profile contract.
 
 The first release officially supports Windows and PowerShell 7. Other games may reuse the generic capability after implementing and testing their own adapter.
 

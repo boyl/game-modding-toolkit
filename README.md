@@ -7,11 +7,13 @@
 ## 能力索引
 
 - [Steam Workshop 发布](capabilities/publishing/steam-workshop/README.md)：只读预检、远端身份校验、预览图保护、单次上传状态机与发布证据。
+- [《怪物猎人：崛起》武器攻击特效](games/monster-hunter-rise/capabilities/weapon-vfx/README.md)：数据化动作配方、空击/命中派发、持续实例生命周期和项目骨架生成。
 - 预留分类：`packaging`、`installing`、`validation`、`diagnostics`。
 
 ## 支持游戏
 
 - [The Binding of Isaac: Rebirth](games/the-binding-of-isaac/README.md)：使用游戏自带 `ModUploader.exe` 的 Windows GUI 适配器。
+- [Monster Hunter Rise: Sunbreak](games/monster-hunter-rise/README.md)：Steam 16.0.2.0 的武器攻击特效参考运行时与 Profile 契约。
 
 首版仅正式支持 Windows 与 PowerShell 7。其他游戏可复用通用发布能力，但必须实现并测试自己的适配器。
 

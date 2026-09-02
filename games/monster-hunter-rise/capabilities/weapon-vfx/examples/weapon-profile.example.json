@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "profile_id": "example-longsword-vfx",
+  "enabled": true,
+  "network_sync": false,
+  "weapon": {
+    "type_id": 3,
+    "managed_type": "snow.player.LongSword"
+  },
+  "action": {
+    "bank": 100,
+    "default_whiff_trigger_frame": 3,
+    "default_whiff_max_late_frames": 5,
+    "hit_grace_ticks": 12
+  },
+  "effects": {
+    "container_id": 150,
+    "baseline_effect_ids": [24000, 30000],
+    "persistent_effect_ids": [24021]
+  },
+  "recipes": [
+    {
+      "action_id": 101,
+      "name": "MVP 普通攻击",
+      "tier": "normal",
+      "whiff_effect_id": 24000,
+      "hit_effect_id": 30000,
+      "max_hit_effects": 1,
+      "whiff_mode": "one_shot"
+    },
+    {
+      "action_id": 140,
+      "name": "MVP 招牌动作",
+      "tier": "signature",
+      "whiff_effect_id": 24021,
+      "hit_effect_id": 30001,
+      "max_hit_effects": 3,
+      "whiff_mode": "instance",
+      "finish_effect_id": 25021
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/boyl/game-modding-toolkit/schemas/mhrise-weapon-vfx-profile-v1.json",
+  "title": "Monster Hunter Rise Weapon VFX Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "profile_id", "enabled", "network_sync", "weapon", "action", "effects", "recipes"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "profile_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,63}$" },
+    "enabled": { "const": true },
+    "network_sync": { "const": false },
+    "weapon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type_id", "managed_type"],
+      "properties": {
+        "type_id": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "managed_type": { "type": "string", "minLength": 3, "maxLength": 160 }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bank", "default_whiff_trigger_frame", "default_whiff_max_late_frames", "hit_grace_ticks"],
+      "properties": {
+        "bank": { "type": "integer", "minimum": 0, "maximum": 9999 },
+        "default_whiff_trigger_frame": { "type": "integer", "minimum": 0, "maximum": 30 },
+        "default_whiff_max_late_frames": { "type": "integer", "minimum": 0, "maximum": 15 },
+        "hit_grace_ticks": { "type": "integer", "minimum": 0, "maximum": 30 }
+      }
+    },
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["container_id", "baseline_effect_ids", "persistent_effect_ids"],
+      "properties": {
+        "container_id": { "type": "integer", "minimum": 1, "maximum": 999999 },
+        "baseline_effect_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "integer", "minimum": 1, "maximum": 999999 }
+        },
+        "persistent_effect_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1, "maximum": 999999 }
+        }
+      }
+    },
+    "recipes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/recipe" }
+    }
+  },
+  "$defs": {
+    "recipe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action_id", "name", "tier", "whiff_effect_id", "hit_effect_id", "max_hit_effects", "whiff_mode"],
+      "properties": {
+        "action_id": { "type": "integer", "minimum": 1, "maximum": 999999 },
+        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
+        "tier": { "enum": ["normal", "finisher", "signature"] },
+        "whiff_effect_id": { "type": "integer", "minimum": 1, "maximum": 999999 },
+        "hit_effect_id": { "type": "integer", "minimum": 1, "maximum": 999999 },
+        "max_hit_effects": { "type": "integer", "minimum": 1, "maximum": 32 },
+        "whiff_mode": { "enum": ["one_shot", "instance"] },
+        "finish_effect_id": { "type": "integer", "minimum": 1, "maximum": 999999 },
+        "whiff_trigger_frame": { "type": "integer", "minimum": 0, "maximum": 30 },
+        "whiff_max_late_frames": { "type": "integer", "minimum": 0, "maximum": 15 }
+      }
+    }
+  }
+}
