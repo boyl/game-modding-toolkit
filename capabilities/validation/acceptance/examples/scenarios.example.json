@@ -1,0 +1,22 @@
+{
+  "scenarios": [
+    {
+      "settings": {
+        "dropdown": true,
+        "fontSize": 28,
+        "page": "settings",
+        "language": "en"
+      },
+      "expected": {
+        "dropdown": true,
+        "fontSize": 28,
+        "page": "settings",
+        "language": "en"
+      },
+      "id": "english-large-settings"
+    }
+  ],
+  "runtimeId": "example-runtime",
+  "timeoutSeconds": 5,
+  "schemaVersion": 1
+}

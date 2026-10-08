@@ -1,0 +1,41 @@
+{
+  "elements": [
+    {
+      "rect": {
+        "x": 20,
+        "height": 40,
+        "width": 300,
+        "y": 20
+      },
+      "id": "heading",
+      "receivesInput": false,
+      "layer": 0,
+      "textBounds": {
+        "height": 28,
+        "width": 240
+      },
+      "kind": "content"
+    },
+    {
+      "rect": {
+        "x": 20,
+        "height": 100,
+        "width": 300,
+        "y": 20
+      },
+      "id": "menu",
+      "receivesInput": true,
+      "layer": 1,
+      "textBounds": {
+        "height": 80,
+        "width": 220
+      },
+      "kind": "popup"
+    }
+  ],
+  "canvas": {
+    "height": 600,
+    "width": 800
+  },
+  "schemaVersion": 1
+}
