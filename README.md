@@ -1,3 +1,5 @@
+[![Downloads](https://img.shields.io/github/downloads/boyl/game-modding-toolkit/total?label=Downloads&color=blue)](https://github.com/boyl/game-modding-toolkit/releases) [![Stars](https://img.shields.io/github/stars/boyl/game-modding-toolkit?label=Stars)](https://github.com/boyl/game-modding-toolkit/stargazers) [![Latest Release](https://img.shields.io/github/v/release/boyl/game-modding-toolkit?label=Release)](https://github.com/boyl/game-modding-toolkit/releases/latest) [![License](https://img.shields.io/github/license/boyl/game-modding-toolkit?label=License)](https://github.com/boyl/game-modding-toolkit/blob/HEAD/LICENSE)
+
 # game-modding-toolkit
 
 面向多游戏 Mod 的可分发工具集合，覆盖开发、验证、安装、诊断与发布。工具可在 PowerShell 7 中独立运行，不依赖 Codex 或 Skill。
