@@ -11,7 +11,8 @@
 - [Steam Workshop 发布](capabilities/publishing/steam-workshop/README.md)：只读预检、远端身份校验、预览图保护、单次上传状态机与发布证据。
 - [《怪物猎人：崛起》武器攻击特效](games/monster-hunter-rise/capabilities/weapon-vfx/README.md)：数据化动作配方、空击/命中派发、持续实例生命周期和项目骨架生成。
 - [通用验收](capabilities/validation/acceptance/README.md)：受限场景适配器、实测布局诊断和制品证据门禁。
-- 预留分类：`packaging`、`installing`、`diagnostics`。
+- [玩家只读诊断](capabilities/diagnostics/README.md)：猎人蓝图安装文件核验、受限日志分类与本地诊断包，不执行游戏调用。
+- 预留分类：`packaging`、`installing`。
 
 ## 支持游戏
 

@@ -9,7 +9,8 @@ Coding agents can start with the [AI integration guide](docs/ai-integration.md).
 - [Steam Workshop publishing](capabilities/publishing/steam-workshop/README.md): read-only preflight, remote identity checks, preview protection, one-shot upload state machine, and evidence capture.
 - [Monster Hunter Rise weapon VFX](games/monster-hunter-rise/capabilities/weapon-vfx/README.md): data-driven action recipes, whiff/hit dispatch, persistent-instance lifecycle, and project scaffolding. The detailed guide is maintained in Chinese.
 - [Acceptance tools](capabilities/validation/acceptance/README.md): adapter-driven scenarios, measured layout diagnostics, and artifact evidence gates. The detailed guide is maintained in Chinese.
-- Reserved categories: `packaging`, `installing`, and `diagnostics`.
+- [Read-only player diagnostics](capabilities/diagnostics/README.md): Hunter Blueprint installation hashes, bounded log classification, and a local diagnostic ZIP. Does not invoke game code. The detailed guide is maintained in Chinese.
+- Reserved categories: `packaging` and `installing`.
 
 ## Supported games
 
